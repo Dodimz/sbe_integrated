@@ -1,0 +1,47 @@
+  .font_laporan{
+    font-size:9px;
+  }
+  table {
+    
+    border-collapse: collapse;
+    width:100%;
+}
+table td, th {
+    border: 0.01em solid ;
+}
+
+  .header{
+    font-weight:bold;
+    text-align : center;
+  }
+
+  body{
+    margin: -50px;
+  }
+  .logo{
+   float:left;
+   width : 50px;
+  }
+  .skpd{
+   float:right;
+   
+  }
+  .clearfix{
+   clear:both;
+   
+  }
+  .kop{
+   text-align:center;
+   
+  }
+  .penutup{
+    font-size:6px;
+  }
+  .copyright{
+    font-size:7px;
+    float:left;
+  }
+  .page{
+    float:right;
+    font-size:7px;
+  }

@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * Author     : Alfikri, M.Kom
+ * Created By : Alfikri, M.Kom
+ * E-Mail     : alfikri.name@gmail.com
+ * No HP      : 081277337405
+ */
+?>
+<!-- Select2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+<!-- Script -->
+<script>
+	$(document).ready(function() {
+		show_select2();
+		var id_group = <?php echo $id_group ?>;
+		// if (id_group ==5) {
+		// 	show_laporan(<?php echo $id_instansi ?>);
+		// }
+
+	});
+
+	function show_select2() {
+		$('#tahun').select2({
+			placeholder: "Pilih tahun",
+			allowClear: false,
+			width: 'style',
+			theme: 'bootstrap4'
+		});
+		$('#kode_tahap').select2({
+			placeholder: "Pilih Tahapan APBD",
+			allowClear: false,
+			width: 'style',
+			theme: 'bootstrap4'
+		});
+		$('#id_opd').select2({
+			placeholder: "Pilih OPD",
+			allowClear: false,
+			width: 'style',
+			theme: 'bootstrap4'
+		});
+	}
+
+	function bulan() {
+		$('#bulan').val('').trigger("change");
+		$('#tampil_pdf').hide();
+	}
+
+	function show_laporan_permasalahan() {
+		let id_opd = $('#id_opd').val();
+		let tahun = $('#tahun').val();
+		let kode_tahap = $('#kode_tahap').val();
+		if (id_opd=='') {
+			Swal.fire('Error','Harap pilih OPD','error');
+		}else{
+
+		$('#tampil_pdf').show();
+		$('#tampil_pdf').attr('src', baseUrl('laporan/show_permasalahan_sub_kegiatan?id_opd=') + id_opd + "&tahun="+ tahun + "&tahap=" + kode_tahap);
+		}
+		
+	}
+
+
+
+
+function print_semua_permasalahan(id_instansi, tahun, tahap) {
+	$('#modal_laporan_semua_permasalahan').modal('show');
+		
+		var id_opd = id_instansi
+		var bulan = '<?php echo bulan_aktif() ?>';
+		var kategori = 'akumulasi';
+		// let id_opd = $('#id_opd').val();
+		// let kategori = $('#kategori').val();
+		// $('#bulan').val('');
+		// if (id_opd) {
+		// 	if (x != 0) {
+		$('#tampil_pdf').show();
+		$('#tampil_pdf').attr('src', baseUrl('laporan/pdf_laporan_realisasi_akumulasi?id_opd=') + id_opd + '&kategori=' + kategori + '&bulan=' + bulan + '#view=FitH');
+		// 	}
+		// }
+	}
+
+
+</script>
