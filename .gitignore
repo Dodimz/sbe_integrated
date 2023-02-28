@@ -1,20 +1,3 @@
-.DS_Store
-
-application/cache/*
-!application/cache/index.html
-
-application/logs/*
-!application/logs/index.html
-
-!application/*/.htaccess
-
-composer.lock
-
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
-
 # IDE Files
 #-------------------------
 /nbproject/
@@ -26,14 +9,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
-/tests/tests/
-/tests/results/
-application/config/database.php
-application/config/config.php
-2018/
-2019/
-sbe_files_data/
-application/config/config.php
-assets/
-sbe_files_support/
-bakcup/
+
